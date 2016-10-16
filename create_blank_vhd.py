@@ -108,6 +108,8 @@ def create_vhd(storage_account_name, storage_account_key, container_name, blob_n
         start_range=size-512,
         end_range=size-1)
 
+    print blob_service.make_blob_url(container_name, blob_name)
+
 if __name__ == '__main__':
     args = docopt(__doc__)
     create_vhd(args["STORAGE_ACCOUNT_NAME"], args["STORAGE_ACCOUNT_KEY"], args["CONTAINER_NAME"], args["VHD_NAME"], args.get("VHD_SIZE", None))
