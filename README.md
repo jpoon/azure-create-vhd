@@ -5,7 +5,7 @@ Docker image to create a blank VHD on Microsoft Azure
 ## Background
 
 The Azure CLI currently does not supporting creating a blank VHD ([azure-cli#655](https://github.com/Azure/azure-cli/issues/655)). 
-A co-worker figured out a [workaround](http://blog.stevenedouard.com/create-a-blank-azure-vm-disk-vhd-without-attaching-it/), and this project serves to wrap that solution into a nice and tidy Docker image. 
+A co-worker (@sedouard) figured out a [workaround](http://blog.stevenedouard.com/create-a-blank-azure-vm-disk-vhd-without-attaching-it/), and this project serves to wrap that solution into a nice and tidy Docker image. 
 
 ## Usage
 
