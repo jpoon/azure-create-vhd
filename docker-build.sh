@@ -9,5 +9,6 @@ apk add --update --no-cache \
 
 ## Install go dependencies
 go get github.com/docopt/docopt-go
-go get github.com/Microsoft/azure-vhd-utils-for-go
-go install github.com/Microsoft/azure-vhd-utils-for-go
+go get github.com/Azure/azure-sdk-for-go/storage
+go get github.com/Microsoft/azure-vhd-utils
+go install github.com/Microsoft/azure-vhd-utils

@@ -88,7 +88,7 @@ Options:
 	}
 
 	// Upload
-	cmdName = "azure-vhd-utils-for-go"
+	cmdName = "azure-vhd-utils"
 	cmdArgs = []string{
 		"upload",
 		"--localvhdpath=image.vhd",
