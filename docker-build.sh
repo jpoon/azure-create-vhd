@@ -2,11 +2,10 @@
 
 apk add --update --no-cache \
     git \
+    qemu-img \
     ntfs-3g-progs \
     e2fsprogs \
     xfsprogs
-
-apk add qemu-img --update-cache --no-cache --repository http://dl-3.alpinelinux.org/alpine/edge/main/ --allow-untrusted
 
 ## Install go dependencies
 go get github.com/docopt/docopt-go
