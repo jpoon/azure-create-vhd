@@ -3,7 +3,8 @@
 apk add --update --no-cache \
     git \
     ntfs-3g-progs \
-    e2fsprogs
+    e2fsprogs \
+    xfsprogs
 
 apk add qemu-img --update-cache --no-cache --repository http://dl-3.alpinelinux.org/alpine/edge/main/ --allow-untrusted
 
