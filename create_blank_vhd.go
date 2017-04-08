@@ -15,7 +15,7 @@ func main() {
 	usage := `
 
 Usage:
-  create_blank_vhd STORAGE_ACCOUNT_NAME STORAGE_ACCOUNT_KEY CONTAINER_NAME VHD_NAME [VHD_SIZE] [--verbose]
+  create_blank_vhd STORAGE_ACCOUNT_NAME STORAGE_ACCOUNT_KEY CONTAINER_NAME VHD_NAME [VHD_SIZE] [--fstype=<type>] [--verbose]
 
 Arguments:
   STORAGE_ACCOUNT_NAME  Azure storage account name
@@ -28,6 +28,8 @@ Options:
   --vhd_size N          Optional parameter denoting size in bytes of VHD (Default: 10G).
                         Suffixes "k" or "K" (kilobyte, 1024) "M" (megabyte, 1024k) 
                         "G" (gigabyte, 1024M) and T (terabyte, 1024G) are supported.
+  --fstype=<type>       Optional parameter denoting type of filesystem to create [default: ext4].
+                        Supported filesystems: ext4, xfs.
   --verbose             Output logs (Default: false)
 
 `
@@ -39,7 +41,15 @@ Options:
 	containerName := args["CONTAINER_NAME"].(string)
 	vhdName := args["VHD_NAME"].(string)
 	vhdSize := args["VHD_SIZE"]
+	fsType := args["--fstype"].(string)
 	isVerbose = args["--verbose"].(bool)
+
+	switch fsType {
+	case "ext4", "xfs":
+		break;
+	default:
+		panic(fmt.Sprintf("Unsupported filesystem type: '%s'", fsType));
+	}
 
 	if vhdSize == nil {
 		vhdSize = "10G"
@@ -56,8 +66,15 @@ Options:
 		os.Exit(1)
 	}
 
-	// Format disk as ext4
-	cmdName = "mkfs.ext4"
+	// Format disk
+	switch fsType {
+	case "ext4":
+		cmdName = "mkfs.ext4"
+	case "xfs":
+		cmdName = "mkfs.xfs"
+	default:
+		panic(fmt.Sprintf("Unsupported filesystem type: '%s'", fsType));
+	}
 	cmdArgs = []string{"./image.raw"}
 	if _, err = execCommand("Format disk", cmdName, cmdArgs); err != nil {
 		os.Exit(1)
@@ -71,7 +88,7 @@ Options:
 	}
 
 	// Upload
-	cmdName = "azure-vhd-utils-for-go"
+	cmdName = "azure-vhd-utils"
 	cmdArgs = []string{
 		"upload",
 		"--localvhdpath=image.vhd",

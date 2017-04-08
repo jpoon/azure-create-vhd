@@ -1,4 +1,4 @@
-FROM golang:1.7.1-alpine
+FROM golang:1.7.5-alpine3.5
 MAINTAINER Jason Poon <docker@jasonpoon.ca>
 
 ADD . /src

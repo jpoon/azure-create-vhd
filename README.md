@@ -10,7 +10,7 @@ As the Azure CLI currently does not supporting creating a blank VHD ([azure-cli#
 
 ```
 docker build . -t create-blank-vhd
-docker run -it azure-create-vhd STORAGE_ACCOUNT_NAME STORAGE_ACCOUNT_KEY CONTAINER_NAME VHD_NAME [VHD_SIZE] [--verbose]
+docker run -it azure-create-vhd STORAGE_ACCOUNT_NAME STORAGE_ACCOUNT_KEY CONTAINER_NAME VHD_NAME [VHD_SIZE] [--fstype=type] [--verbose]
 
 Arguments:
   STORAGE_ACCOUNT_NAME  Azure storage account name
@@ -23,5 +23,7 @@ Options:
   --vhd_size N          Optional parameter denoting size in bytes of VHD (Default: 10G).
                         Suffixes "k" or "K" (kilobyte, 1024) "M" (megabyte, 1024k) 
                         "G" (gigabyte, 1024M) and T (terabyte, 1024G) are supported.
+  --fstype=<type>       Optional parameter denoting type of filesystem to create [default: ext4].
+                        Supported filesystems: ext4, xfs.
   --verbose             Output logs (Default: false)
   ```
