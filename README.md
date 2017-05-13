@@ -4,7 +4,7 @@ Create and upload a ext4 formatted VHD to Microsoft Azure Storage.
 
 ## Background
 
-As the Azure CLI currently does not supporting creating a blank VHD ([azure-cli#655](https://github.com/Azure/azure-cli/issues/655)). Much of the logic was inspired https://github.com/colemickens/azure-tools differing slightly so as not to require Azure login.
+This tool exists as the Azure CLI currently does not supporting creating a blank VHD ([azure-cli#655](https://github.com/Azure/azure-cli/issues/655)). Much of the logic was inspired by https://github.com/colemickens/azure-tools differing so as not to require Azure login.
 
 ## Usage
 
