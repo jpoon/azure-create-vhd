@@ -26,7 +26,7 @@ Arguments:
 Options:
   -h --help          	Show this help message and exit
   --vhd_size N          Optional parameter denoting size in bytes of VHD (Default: 10G).
-                        Suffixes "k" or "K" (kilobyte, 1024) "M" (megabyte, 1024k) 
+                        Suffixes "k" or "K" (kilobyte, 1024) "M" (megabyte, 1024k)
                         "G" (gigabyte, 1024M) and T (terabyte, 1024G) are supported.
   --fstype=<type>       Optional parameter denoting type of filesystem to create [default: ext4].
                         Supported filesystems: ext4, xfs.
@@ -108,8 +108,10 @@ Options:
 		os.Exit(1)
 	}
 
-	url := client.GetBlobService().GetBlobURL(containerName, vhdName)
-
+	blobCli := client.GetBlobService()
+	cnt := blobCli.GetContainerReference(containerName)
+	b := cnt.GetBlobReference(vhdName)
+	url := b.GetURL()
 	fmt.Print(url)
 
 	return
